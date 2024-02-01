@@ -87,11 +87,11 @@ include_once("connect.php");
 
 							echo '<td data-field="track_value"><input class="main__logist_table--input" type="text" class="edit-field" value="' . $row['track_value'] . '"></td>';
 
-							echo '<td><button class="main__logist_table--btn">Edit</button></td>';
+							echo '<td><button class="main__logist_table-btn--edit">Изменить</button></td>';
 							echo '<td>
 							<form method="POST" action="delete_order.php">
 									<input type="hidden" name="order_id" value="' . $row['order_id'] . '">
-									<button class="main__logist_table--btn" type="submit">Delete</button>
+									<button class="main__logist_table-btn--del" type="submit">Очистить</button>
 							</form>
 						</td>';
 							echo '</tr>';

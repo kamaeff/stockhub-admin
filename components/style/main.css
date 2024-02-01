@@ -50,15 +50,6 @@ table tbody tr td:last-child {
 	border-radius: 0 8px 8px 0;
 }
 
-.main__logist_table--btn {
-	background-color: #888888;
-	color: white;
-	padding: 2px 10px;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-}
-
 .main__logist_table--input {
 	text-align: center;
 	border: 1px solid #ccc;
@@ -66,9 +57,14 @@ table tbody tr td:last-child {
 	box-sizing: border-box;
 }
 
-.main__logist_table--btn:hover {
-	color: #000;
+.main__logist_table-btn--edit,
+.main__logist_table-btn--del {
 	background-color: #888888;
+	color: white;
+	padding: 2px 10px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 .circle-container {
@@ -83,11 +79,14 @@ table tbody tr td:last-child {
 	margin-right: 5px;
 }
 
-.order__status-succes {
+.order__status-succes,
+.main__logist_table-btn--edit:hover {
 	background: #c0ff9c;
+	color: #000;
 }
 
-.order__status-error {
+.order__status-error,
+.main__logist_table-btn--del:hover {
 	background: #ff7d88;
 }
 .block {
