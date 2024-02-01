@@ -112,10 +112,10 @@ function executeQuery($query)
 						</tr>
 					</thead>
 					<tbody>
-					<?php
-					$result = executeQuery("SELECT * FROM orders");
+						<?php
+						$result = executeQuery("SELECT * FROM orders");
 
-					while ($row = $result->fetch_assoc()) {
+						while ($row = $result->fetch_assoc()) {
 							echo '<tr class="edit-mode">';
 							echo '<td data-field="order_id">' . $row['order_id'] . '</td>';
 							echo '<td data-field="order_status">' . $row['order_status'] . '</td>';
@@ -128,7 +128,7 @@ function executeQuery($query)
 							echo '<td data-field="ordered"><input type="text" class="edit-field" value="' . $row['ordered'] . '"></td>';
 
 							echo '<td data-field="track_value"><input type="text" class="edit-field" value="' . $row['track_value'] . '"></td>';
-							
+
 							echo '<td><button class="edit-btn">Edit</button></td>';
 							echo '<td>
 							<form method="POST" action="delete_order.php">
@@ -137,15 +137,11 @@ function executeQuery($query)
 							</form>
 						</td>';
 							echo '</tr>';
-							
-					}
-					?>
+						}
+						?>
 
 					</tbody>
 				</table>
-							
-			
-
 			</section>
 
 			<section class="main__users" id="stat">
@@ -172,7 +168,7 @@ function executeQuery($query)
 						</tr>
 					</thead>
 					<tbody>
-						
+
 						<?php
 						$result = executeQuery("SELECT * FROM users");
 						while ($row = $result->fetch_assoc()) {
@@ -184,11 +180,11 @@ function executeQuery($query)
 							echo '<td>' . $row['locale'] . '</td>';
 							echo '<td>' . $row['email'] . '</td>';
 							echo '<td>' . $row['FIO'] . '</td>';
-							
+
 							echo '</tr>';
 						}
 						?>
-					
+
 					</tbody>
 				</table>
 
