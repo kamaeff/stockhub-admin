@@ -1,0 +1,80 @@
+.main__logist {
+	display: none;
+}
+
+.main__logist,
+.main__users {
+	width: 1400px;
+	display: none;
+	margin: 0 auto;
+}
+
+.main__users_table,
+.main__logist_table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+
+	border-radius: 8px;
+}
+
+.main__users_table th,
+.main__users_table td,
+.main__logist_tableth,
+.main__logist_table td {
+	cursor: pointer;
+	border: 1px solid #ddd;
+	padding: 12px;
+}
+
+.main__users_table th,
+.main__logist_table th {
+	background-color: #f2f2f2;
+	font-weight: bold;
+}
+
+.main__users_table tbody td:nth-child(4),
+.main__logist_table tbody td:nth-child(4) {
+	white-space: nowrap;
+}
+
+.main__users_table tbody td:nth-child(5),
+.main__logist_table tbody td:nth-child(5) {
+	text-transform: capitalize;
+}
+
+.main__users_table thead th,
+.main__logist_table thead th {
+	background-color: #4caf50;
+	color: white;
+}
+
+.main__user_stat {
+	width: 120px;
+	padding: 5px 10px;
+
+	text-align: center;
+	color: #fff;
+	background-color: #4caf50;
+	border-radius: 8px;
+}
+
+.delete-btn,
+.edit-btn {
+	background-color: #ff0000;
+	color: #ffffff;
+	padding: 5px 10px;
+	border: none;
+	cursor: pointer;
+}
+
+.edit-btn {
+	background-color: #4caf50;
+}
+
+.block {
+	display: block;
+}

@@ -1,0 +1,41 @@
+.header {
+	display: flex;
+	align-items: center;
+
+	font-family: 'Nunito', sans-serif;
+	font-weight: 700;
+
+	padding: 15px;
+}
+
+.header__logo {
+	border-radius: 20px;
+}
+
+.header__nav {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding-left: 20px;
+}
+
+.header__nav li {
+	margin-right: 20px;
+	transition: color 0.3s;
+}
+
+.header__nav a {
+	color: #000;
+}
+
+.header__nav li:hover {
+	border-bottom: 1px solid #000;
+	transform: scale(1.05);
+}
+
+.header__nav--logout {
+	display: flex;
+	align-items: center;
+
+	gap: 10px;
+}
