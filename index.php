@@ -1,57 +1,5 @@
 <?php
-function connect()
-{
-	$env_file_path = realpath(__DIR__ . "/.env");
-	$var_arrs = parseEnvFile($env_file_path);
-
-	$server = $var_arrs['HOST'];
-	$db_username = $var_arrs['USER'];
-	$db_password = $var_arrs['PASSWORD'];
-	$dbname = $var_arrs['DATABASE'];
-
-	$conn = new mysqli($server, $db_username, $db_password, $dbname);
-
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	} else {
-		return $conn;
-	}
-}
-
-function parseEnvFile($env_file_path)
-{
-	$var_arrs = [];
-	$fopen = fopen($env_file_path, 'r');
-
-	if ($fopen) {
-		while (($line = fgets($fopen)) !== false) {
-			$line_is_comment = (substr(trim($line), 0, 1) == '#') ? true : false;
-			if ($line_is_comment || empty(trim($line)))
-				continue;
-
-			$line_no_comment = explode("#", $line, 2)[0];
-			$env_ex = preg_split('/(\s?)=(\s?)/', $line_no_comment);
-			$env_name = trim($env_ex[0]);
-			$env_value = isset($env_ex[1]) ? trim($env_ex[1]) : "";
-			$var_arrs[$env_name] = $env_value;
-		}
-		fclose($fopen);
-	}
-
-	return $var_arrs;
-}
-
-function executeQuery($query)
-{
-	$result = connect()->query($query);
-
-	if (!$result) {
-		die("Query failed: " . connect()->error);
-	}
-
-	return $result;
-}
-
+include_once("connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -63,9 +11,11 @@ function executeQuery($query)
 	<title>AdminPanel</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="./components/style/style.css">
 
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	<script src="./app.js"></script>
 
 </head>
@@ -100,6 +50,7 @@ function executeQuery($query)
 				<table class="main__logist_table">
 					<thead>
 						<tr>
+							<th></th>
 							<th>ORDER_ID</th>
 							<th>Стаус оплаты</th>
 							<th>Email</th>
@@ -117,23 +68,30 @@ function executeQuery($query)
 
 						while ($row = $result->fetch_assoc()) {
 							echo '<tr class="edit-mode">';
+
+							echo '<td data-field="status-circle" class="circle-container">';
+							echo '<span class="circle ' . ($row['order_status'] == 'Оплачено' ? 'order__status-succes' : 'order__status-error') . '"></span>';
+							echo '</td>';
+
 							echo '<td data-field="order_id">' . $row['order_id'] . '</td>';
+
 							echo '<td data-field="order_status">' . $row['order_status'] . '</td>';
+
 							echo '<td data-field="email">' . $row['email'] . '</td>';
 							echo '<td data-field="FIO">' . $row['FIO'] . '</td>';
 							echo '<td data-field="name_kross">' . $row['name_kross'] . '</td>';
 							echo '<td data-field="size">' . $row['size'] . '</td>';
 							echo '<td data-field="price">' . $row['price'] . '</td>';
 
-							echo '<td data-field="ordered"><input type="text" class="edit-field" value="' . $row['ordered'] . '"></td>';
+							echo '<td data-field="ordered"><input class="main__logist_table--input" type="text" class="edit-field" value="' . $row['ordered'] . '"></td>';
 
-							echo '<td data-field="track_value"><input type="text" class="edit-field" value="' . $row['track_value'] . '"></td>';
+							echo '<td data-field="track_value"><input class="main__logist_table--input" type="text" class="edit-field" value="' . $row['track_value'] . '"></td>';
 
-							echo '<td><button class="edit-btn">Edit</button></td>';
+							echo '<td><button class="main__logist_table--btn">Edit</button></td>';
 							echo '<td>
 							<form method="POST" action="delete_order.php">
 									<input type="hidden" name="order_id" value="' . $row['order_id'] . '">
-									<button type="submit" class="delete-btn">Delete</button>
+									<button class="main__logist_table--btn" type="submit">Delete</button>
 							</form>
 						</td>';
 							echo '</tr>';
@@ -145,16 +103,15 @@ function executeQuery($query)
 			</section>
 
 			<section class="main__users" id="stat">
-
 				<div class="main__user_stat">
 					<?php
 					$result = executeQuery("SELECT COUNT(*) as usersCount FROM users");
 					while ($row = $result->fetch_assoc()) {
 						echo '<p>' . '<span style="font-weight: 500; font-size: 20px">Users: </span>' . $row['usersCount'] . '</p>';
 					}
-
 					?>
 				</div>
+
 				<table class="main__users_table">
 					<thead>
 						<tr>
@@ -168,7 +125,6 @@ function executeQuery($query)
 						</tr>
 					</thead>
 					<tbody>
-
 						<?php
 						$result = executeQuery("SELECT * FROM users");
 						while ($row = $result->fetch_assoc()) {
@@ -180,15 +136,14 @@ function executeQuery($query)
 							echo '<td>' . $row['locale'] . '</td>';
 							echo '<td>' . $row['email'] . '</td>';
 							echo '<td>' . $row['FIO'] . '</td>';
-
 							echo '</tr>';
 						}
 						?>
-
 					</tbody>
 				</table>
 
 			</section>
+
 		</main>
 	<?php
 	} else {
@@ -196,13 +151,13 @@ function executeQuery($query)
 		<form method="post" action="auth.php" class="login__form">
 			<div class="container" id="loginContainer">
 				<!-- <label for="uname"><b>Username</b></label> -->
-				<input type="text" placeholder="Введи логин" name="uname" required />
+				<input class='log__input' type="text" placeholder="Введи логин" name="uname" required />
 
 				<!-- <label for="psw"><b>Password</b></label> -->
-				<input type="password" placeholder="Введи пароль" name="psw" required />
+				<input class='log__pass' type="password" placeholder="Введи пароль" name="psw" required />
 
 				<div class="clearfix">
-					<button type="submit">Войти</button>
+					<button class="log__btn" type="submit">Войти</button>
 				</div>
 			</div>
 		</form>
