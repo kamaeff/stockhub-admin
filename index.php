@@ -28,19 +28,20 @@ include_once("connect.php");
 	if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
 	?>
 		<header class="header">
-			<img src="./assets/img/stocklogo.png" width="80" height="80" alt="logo" class="header__logo">
+
 			<nav>
 				<ul class="header__nav">
-
+					<img src="./assets/img/stocklogo.png" width="80" height="80" alt="logo" class="header__logo me-2">
 					<li><a href="#" id="logLink">Логистика</a></li>
-					<li><a href="#sup">Для модерации</a></li>
+					<li><a href="#moder">Для модерации</a></li>
 					<li><a href="#" id="statLink">Статистика</a></li>
-					<li class="header__nav--logout">
-						<img src="./assets/icon/logout.svg" width="20" height='20' alt="logout">
-						<a href="logout.php">Выход</a>
-					</li>
+
 				</ul>
 			</nav>
+			<div class="header__nav--logout">
+				<img src="./assets/icon/logout.svg" width="20" height='20' alt="logout">
+				<a href="logout.php" class="text-dark">Выход</a>
+			</div>
 		</header>
 
 		<main class="main">
@@ -144,13 +145,16 @@ include_once("connect.php");
 
 			</section>
 
+			<section class="main__moder" id="moder">
+				<h2 class='text-center mb-3'>Все для модерации</h2>
+				<p class="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+			</section>
 		</main>
 	<?php
 	} else {
 	?>
 		<form method="post" action="auth.php" class="login__form">
 			<div class="container" id="loginContainer">
-				<!-- <label for="uname"><b>Username</b></label> -->
 				<input class='log__input' type="text" placeholder="Введи логин" name="uname" required />
 
 				<!-- <label for="psw"><b>Password</b></label> -->

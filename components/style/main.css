@@ -89,6 +89,12 @@ table tbody tr td:last-child {
 .main__logist_table-btn--del:hover {
 	background: #ff7d88;
 }
+
+.main__moder {
+	width: 1000px;
+	margin-top: 30px;
+}
+
 .block {
 	display: block;
 }
