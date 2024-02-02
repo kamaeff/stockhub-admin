@@ -50,14 +50,14 @@ include_once("connect.php");
 
 				<div class="table-container">
 					<table class="main__users_table">
-						<caption class="main__table--title">Статистика пользователей</caption>
+						<!-- <caption class="main__table--title">Статистика пользователей</caption> -->
 						<thead>
 							<tr>
 								<th></th>
 								<th>ID</th>
 								<th>ChatID</th>
 								<th>Username</th>
-								<th>Дата регистрации</th>
+								<th>Дата регистрации</th>:
 								<th>Адрес доставки</th>
 								<th>Email</th>
 								<th>ФИО</th>
@@ -97,6 +97,7 @@ include_once("connect.php");
 								echo '</tr>';
 							}
 							?>
+							<caption class="main__table--title">Статистика пользователей: <?php echo $totalUsers; ?></caption>
 						</tbody>
 					</table>
 
