@@ -29,35 +29,31 @@ include_once("connect.php");
 	if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
 	?>
 		<header class="header">
+		<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2"/>
 			<nav>
 				<ul class="header__nav">
-					<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2"/>
 					<li><a href="#log">Логистика</a></li>
 					<li><a href="#moder">Для модерации</a></li>
 					<li><a href="#stat">Статистика</a></li>
-
 				</ul>
 			</nav>
 			<div class="header__nav--logout">
-				<img src="./assets/icon/logout.svg" width="20" height='20' alt="logout">
+				<img src="./assets/icon/logout.svg" width="25" height='25' alt="logout">
 				<a href="logout.php" class="text-dark">Выход</a>
 			</div>
 		</header>
 
 		<main class="main">
-
 			<section class="main__users" id="stat">
-
 				<div class="table-container">
 					<table class="main__users_table">
-						<!-- <caption class="main__table--title">Статистика пользователей</caption> -->
 						<thead>
 							<tr>
 								<th></th>
 								<th>ID</th>
 								<th>ChatID</th>
 								<th>Username</th>
-								<th>Дата регистрации</th>:
+								<th>Дата регистрации</th>
 								<th>Адрес доставки</th>
 								<th>Email</th>
 								<th>ФИО</th>
@@ -112,7 +108,6 @@ include_once("connect.php");
 			</section>
 
 			<section class="main__logist" id="log">
-
 				<table class="main__logist_table">
 					<caption class="main__table--title">Логистика</caption>
 					<thead>
@@ -188,7 +183,7 @@ include_once("connect.php");
 					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
 				</div>
 				<div class="main__moder_con">
-					<h3 class="main__moder_con--title">Когда приедет моя посылка?</h3>
+					<h3 class="main__moder_con--title">Когда придет моя посылка?</h3>
 					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
 				</div>
 				<div class="main__moder_con">
