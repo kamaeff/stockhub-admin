@@ -68,7 +68,8 @@ include_once("./components/php/connect.php");
 						$result = executeQuery("SELECT * FROM orders");
 
 						while ($row = $result->fetch_assoc()) {
-							echo '<form method="POST" action="./components/php/update.php">';
+							echo '<form method="POST" action="./components/php/update.php" onsubmit="return confirm(\'Изменить заказ ' . $row['order_id'] . '?\nСтатус доставки: ' . $row['ordered'] . '\nТрек номер: ' . $row['track_value'] . '\');">';
+
 							echo '<tr class="edit-mode">';
 
 							echo '<td data-field="status-circle" class="circle-container">';
@@ -93,7 +94,7 @@ include_once("./components/php/connect.php");
 							echo '<td>	<input class="main__logist_table--input edit-field" type="text" name="pole2" value="' . $row['track_value'] . '">
 							</td>';
 
-							echo '<td>	<input type="hidden" name="order_id" value="' . $row['order_id'] . '">
+							echo '<td>	<input type="hidden" name="order_id" value="' . $row['order_id'] . '" >
 									<button class="main__logist_table-btn--edit" type="submit">Изменить</button>
 						</td>';
 
