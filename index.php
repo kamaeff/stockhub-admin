@@ -1,5 +1,5 @@
 <?php
-include_once("connect.php");
+include_once("./components/php/connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,14 +12,10 @@ include_once("connect.php");
 	<title>AdminPanel</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="./components/style/style.css">
 
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	<script src="./app.js"></script>
 
 </head>
@@ -30,7 +26,7 @@ include_once("connect.php");
 	session_start();
 
 	if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
-		?>
+	?>
 		<header class="header">
 			<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2" />
 			<nav>
@@ -136,6 +132,7 @@ include_once("connect.php");
 						$result = executeQuery("SELECT * FROM orders");
 
 						while ($row = $result->fetch_assoc()) {
+							echo '<form method="POST" action="./components/php/update.php">';
 							echo '<tr class="edit-mode">';
 
 							echo '<td data-field="status-circle" class="circle-container">';
@@ -153,13 +150,20 @@ include_once("connect.php");
 							echo '<td data-field="size">' . $row['size'] . '</td>';
 							echo '<td data-field="price">' . $row['price'] . '</td>';
 
-							echo '<td data-field="ordered"><input class="main__logist_table--input" type="text" class="edit-field" value="' . $row['ordered'] . '"></td>';
-
-							echo '<td data-field="track_value"><input class="main__logist_table--input" type="text" class="edit-field" value="' . $row['track_value'] . '"></td>';
-
-							echo '<td><button class="main__logist_table-btn--edit">Изменить</button></td>';
 							echo '<td>
-							<form method="POST" action="delete_order.php">
+								<input class="main__logist_table--input edit-field" type="text" name="pole1" value="' . $row['ordered'] . '">
+								</td>';
+
+							echo '<td>	<input class="main__logist_table--input edit-field" type="text" name="pole2" value="' . $row['track_value'] . '">
+							</td>';
+
+							echo '<td>	<input type="hidden" name="order_id" value="' . $row['order_id'] . '">
+									<button class="main__logist_table-btn--edit" type="submit">Изменить</button>
+						</td>';
+
+							echo '</form>';
+							echo '<td>
+							<form method="POST" action="./components/php/delete_order.php">
 									<input type="hidden" name="order_id" value="' . $row['order_id'] . '">
 									<button class="main__logist_table-btn--del" type="submit">Очистить</button>
 							</form>
@@ -205,14 +209,13 @@ include_once("connect.php");
 
 
 		</main>
-		<?php
+	<?php
 	} else {
-		?>
+	?>
 		<form method="post" action="auth.php" class="login__form">
 			<div class="container" id="loginContainer">
 				<input class='log__input' type="text" placeholder="Введи логин" name="uname" required />
 
-				<!-- <label for="psw"><b>Password</b></label> -->
 				<input class='log__pass' type="password" placeholder="Введи пароль" name="psw" required />
 
 				<div class="clearfix">
@@ -220,7 +223,7 @@ include_once("connect.php");
 				</div>
 			</div>
 		</form>
-		<?php
+	<?php
 	}
 	?>
 
