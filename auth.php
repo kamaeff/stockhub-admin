@@ -6,7 +6,7 @@ include_once("connect.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$input_username = $_POST['uname'];
-	$input_password = $_POST['psw'];
+	$input_password = md5($_POST['psw']);
 
 	$result = connect()->query("SELECT * FROM adm WHERE uname = '$input_username' AND psw = '$input_password'");
 
