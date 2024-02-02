@@ -1,45 +1,33 @@
-function toggleStatSection(sectionId) {
-	var section = document.getElementById(sectionId)
-	section.classList.toggle('block')
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-	var statLink = document.getElementById('statLink')
-
-	statLink.addEventListener('click', function () {
-		toggleStatSection('stat')
-		handleEditButtonClick()
-	})
-
-	handleEditButtonClick()
-})
-
-function handleEditButtonClick() {
-	$('.edit-btn').on('click', function () {
+$(document).ready(function () {
+	$('.main__logist_table-btn--edit').click(function () {
 		var row = $(this).closest('tr')
-		var fields = row.find('[data-field]')
 
-		var data = {}
-		fields.each(function () {
-			var field = $(this).data('field')
-			var value
-
-			if ($(this).children('.edit-field').length) {
-				value = $(this).children('.edit-field').val()
-			} else {
-				value = $(this).text()
-			}
-
-			data[field] = value
-		})
+		var ordered = row.find('[data-field="ordered"] input').val()
+		var track_value = row.find('[data-field="track_value"] input').val()
+		var order_id = row.find('[data-field="order_id"]').text()
 
 		$.ajax({
-			type: 'POST',
 			url: 'update.php',
-			data: { updateData: data },
+			type: 'POST',
+			data: {
+				order_id: order_id,
+				ordered: ordered,
+				track_value: track_value,
+			},
 			success: function (response) {
-				console.log(response)
+				if (response === 'success') {
+					alert(
+						`Изменения для ${order_id} сохранены\n${
+							'Статус доставки: ' + ordered
+						}\n${'Трек номер: ' + track_value}`
+					)
+				} else {
+					alert('Ошибка при сохранении изменений')
+				}
+			},
+			error: function () {
+				alert('Ошибка при отправке запроса')
 			},
 		})
 	})
-}
+})
