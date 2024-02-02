@@ -12,11 +12,14 @@ include_once("connect.php");
 	<title>AdminPanel</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="./components/style/style.css">
 
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
 	<script src="./app.js"></script>
 
 </head>
@@ -27,14 +30,14 @@ include_once("connect.php");
 	session_start();
 
 	if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
-	?>
+		?>
 		<header class="header">
-		<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2"/>
+			<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2" />
 			<nav>
 				<ul class="header__nav">
+					<li><a href="#stat">Статистика</a></li>
 					<li><a href="#log">Логистика</a></li>
 					<li><a href="#moder">Для модерации</a></li>
-					<li><a href="#stat">Статистика</a></li>
 				</ul>
 			</nav>
 			<div class="header__nav--logout">
@@ -57,7 +60,7 @@ include_once("connect.php");
 								<th>Адрес доставки</th>
 								<th>Email</th>
 								<th>ФИО</th>
-								<th>Боусы</th>
+								<th>Бонусы</th>
 								<th>Заказы</th>
 								<th></th>
 							</tr>
@@ -93,7 +96,9 @@ include_once("connect.php");
 								echo '</tr>';
 							}
 							?>
-							<caption class="main__table--title">Статистика пользователей: <?php echo $totalUsers; ?></caption>
+							<caption class="main__table--title">Статистика пользователей:
+								<?php echo $totalUsers; ?>
+							</caption>
 						</tbody>
 					</table>
 
@@ -135,7 +140,7 @@ include_once("connect.php");
 
 							echo '<td data-field="status-circle" class="circle-container">';
 							echo '<span class="circle ' . ($row['order_status'] == 'Оплачено' ? 'order__status-succes' : 'order__status-error') . '"></span>';
-							echo '<span class="circle ' . ($row['ordered'] == 'Доставлено' ? 'order__status-succes' : 'order__status-assembly') . '"></span>';
+							echo '<span class="circle ' . (($row['ordered'] == 'Доставлено') ? 'order__status-succes' : (($row['ordered'] == 'Ожидание оплаты') ? 'order__status-error' : 'order__status-assembly')) . '"></span>';
 							echo '</td>';
 
 							echo '<td data-field="order_id">' . $row['order_id'] . '</td>';
@@ -180,23 +185,29 @@ include_once("connect.php");
 				<h2 class='text-center mb-3'>Все для модерации</h2>
 				<div class="main__moder_con">
 					<h3 class="main__moder_con--title">Как вернуть заказ?</h3>
-					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et
+						nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium
+						officia et, similique consequuntur animi.</p>
 				</div>
 				<div class="main__moder_con">
 					<h3 class="main__moder_con--title">Когда придет моя посылка?</h3>
-					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et
+						nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium
+						officia et, similique consequuntur animi.</p>
 				</div>
 				<div class="main__moder_con">
 					<h3 class="main__moder_con--title">Что я могу заказать?</h3>
-					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et
+						nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium
+						officia et, similique consequuntur animi.</p>
 				</div>
 			</section>
 
 
 		</main>
-	<?php
+		<?php
 	} else {
-	?>
+		?>
 		<form method="post" action="auth.php" class="login__form">
 			<div class="container" id="loginContainer">
 				<input class='log__input' type="text" placeholder="Введи логин" name="uname" required />
@@ -209,7 +220,7 @@ include_once("connect.php");
 				</div>
 			</div>
 		</form>
-	<?php
+		<?php
 	}
 	?>
 

@@ -6,11 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$ordered = $_POST['ordered'];
 	$track_value = $_POST['track_value'];
 
-	// Validate and sanitize input if necessary
-
-	// Update the database
-	$updateQuery = "UPDATE orders SET ordered='$ordered', track_value='$track_value' WHERE order_id='$order_id'";
-	$result = executeQuery($updateQuery);
+	$result = executeQuery("UPDATE orders SET ordered='$ordered', track_value='$track_value' WHERE order_id='$order_id'");
 
 	if ($result) {
 		echo "success";
