@@ -111,6 +111,30 @@ table tbody tr td:last-child {
 	cursor: pointer;
 }
 
+.main__logist_table--refresh {
+	background: none !important;
+	color: white;
+	border: none !important;
+	cursor: pointer;
+}
+
+.main__logist_table--refresh:hover {
+	animation: rotateAnimation 1s ease-in-out forwards;
+}
+
+@keyframes rotateAnimation {
+	0% {
+		transform: rotate(0deg);
+	}
+	75% {
+		transform: rotate(360deg);
+	}
+	100% {
+		transform: rotate(0deg);
+		transform: scale(1.2);
+	}
+}
+
 .circle-container {
 	vertical-align: middle;
 	display: flex;

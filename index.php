@@ -113,6 +113,7 @@ include_once("./components/php/connect.php");
 					<caption class="main__table--title">Логистика</caption>
 					<thead>
 						<tr>
+
 							<th>Опл/Дост</th>
 							<th>ORDER_ID</th>
 							<th>Стаус оплаты</th>
@@ -124,7 +125,7 @@ include_once("./components/php/connect.php");
 							<th>Статус доставки</th>
 							<th>Трек номер</th>
 							<th></th>
-							<th></th>
+							<th><button class="main__logist_table--refresh" onclick="location.reload()"><img src="./assets/icon/refresh.png" alt="refresh" width='20' height="20"></button></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -163,16 +164,14 @@ include_once("./components/php/connect.php");
 
 							echo '</form>';
 							echo '<td>
-							<form method="POST" action="./components/php/delete_order.php">
-									<input type="hidden" name="order_id" value="' . $row['order_id'] . '">
-									<button class="main__logist_table-btn--del" type="submit">Очистить</button>
-							</form>
-						</td>';
+								<form method="POST" action="./components/php/delete_order.php" onsubmit="return confirm(\'Ты точно хочешь удалить заказ ' . $row['order_id'] . '?\');">
+										<input type="hidden" name="order_id" value="' . $row['order_id'] . '">
+										<button class="main__logist_table-btn--del" type="submit">Очистить</button>
+								</form>
+							</td>';
 							echo '</tr>';
 						}
 						?>
-
-
 					</tbody>
 				</table>
 				<div class="pagination-container pagination-left">
