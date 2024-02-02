@@ -32,7 +32,7 @@ include_once("connect.php");
 			<nav>
 				<ul class="header__nav">
 					<img src="./assets/img/stocklogo.png" width="80" height="80" alt="logo" class="header__logo me-2">
-					<li><a href="#" id="logLink">Логистика</a></li>
+					<li><a href="#logist">Логистика</a></li>
 					<li><a href="#moder">Для модерации</a></li>
 					<li><a href="#" id="statLink">Статистика</a></li>
 
@@ -45,9 +45,8 @@ include_once("connect.php");
 		</header>
 
 		<main class="main">
-			<section class="main__logist" id="log">
-				<!-- todo: сделать таблицы заказов -->
-
+			<section class="main__logist" id="logist">
+				<h2 class="mb-3">Логистика</h2>
 				<table class="main__logist_table">
 					<thead>
 						<tr>
@@ -104,15 +103,7 @@ include_once("connect.php");
 			</section>
 
 			<section class="main__users" id="stat">
-				<div class="main__user_stat">
-					<?php
-					$result = executeQuery("SELECT COUNT(*) as usersCount FROM users");
-					while ($row = $result->fetch_assoc()) {
-						echo '<p>' . '<span style="font-weight: 500; font-size: 20px">Users: </span>' . $row['usersCount'] . '</p>';
-					}
-					?>
-				</div>
-
+				<h2 class="mb-3">Статиска пользователей</h2>
 				<table class="main__users_table">
 					<thead>
 						<tr>
@@ -143,12 +134,36 @@ include_once("connect.php");
 					</tbody>
 				</table>
 
+				<div class="main__user_stat">
+					<?php
+					$result = executeQuery("SELECT COUNT(*) as usersCount FROM users");
+					while ($row = $result->fetch_assoc()) {
+						echo '<p>' . '<span style="font-weight: 500; font-size: 20px">Всего: </span>' . $row['usersCount'] . '</p>';
+					}
+					?>
+				</div>
+
 			</section>
 
 			<section class="main__moder" id="moder">
-				<h2 class='text-center mb-3'>Все для модерации</h2>
-				<p class="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+				<h2 class='mb-3'>Все для модерации</h2>
+
+				<div class="main__moder_con">
+					<h3 class="main__moder_con--title">Первый шаблон</h3>
+					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+				</div>
+
+				<div class="main__moder_con">
+					<h3 class="main__moder_con--title">Второй шаблон</h3>
+					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+				</div>
+
+				<div class="main__moder_con">
+					<h3 class="main__moder_con--title">Третий шаблон</h3>
+					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
+				</div>
 			</section>
+
 		</main>
 	<?php
 	} else {

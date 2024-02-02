@@ -3,7 +3,6 @@
 	justify-content: center;
 }
 
-.main__logist,
 .main__users {
 	width: 100%;
 	display: none;
@@ -91,8 +90,24 @@ table tbody tr td:last-child {
 }
 
 .main__moder {
-	width: 1000px;
-	margin-top: 30px;
+	max-width: 1400px;
+
+	display: grid;
+	justify-content: center;
+
+	margin: 30px auto;
+	gap: 30px;
+}
+
+.main__moder_con--title {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+}
+
+.main__moder_con--text {
+	max-width: 800px;
+	text-align: justify;
+	margin: 0 auto;
 }
 
 .block {
