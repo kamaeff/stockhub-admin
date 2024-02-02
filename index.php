@@ -31,7 +31,7 @@ include_once("connect.php");
 		<header class="header">
 			<nav>
 				<ul class="header__nav">
-					<img src="./assets/img/stocklogo.png" width="80" height="80" alt="logo" class="header__logo me-2">
+					<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2"/>
 					<li><a href="#log">Логистика</a></li>
 					<li><a href="#moder">Для модерации</a></li>
 					<li><a href="#stat">Статистика</a></li>
@@ -184,15 +184,15 @@ include_once("connect.php");
 			<section class="main__moder" id="moder">
 				<h2 class='text-center mb-3'>Все для модерации</h2>
 				<div class="main__moder_con">
-					<h3 class="main__moder_con--title">Первый шаблон</h3>
+					<h3 class="main__moder_con--title">Как вернуть заказ?</h3>
 					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
 				</div>
 				<div class="main__moder_con">
-					<h3 class="main__moder_con--title">Второй шаблон</h3>
+					<h3 class="main__moder_con--title">Когда приедет моя посылка?</h3>
 					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
 				</div>
 				<div class="main__moder_con">
-					<h3 class="main__moder_con--title">Третий шаблон</h3>
+					<h3 class="main__moder_con--title">Что я могу заказать?</h3>
 					<p class="main__moder_con--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, quaerat et nihil officia vitae tempore iure aut impedit. Fuga quibusdam nesciunt magni voluptatum dolores praesentium officia et, similique consequuntur animi.</p>
 				</div>
 			</section>
