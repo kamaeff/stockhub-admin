@@ -76,6 +76,11 @@ table tbody td {
 	vertical-align: top;
 }
 
+table tbody tr:hover {
+	cursor: pointer;
+	transform: scale(1.02);
+}
+
 table tbody tr:nth-child(even) {
 	background: #f3f3f3;
 }
@@ -93,6 +98,12 @@ table tbody tr td:last-child {
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	box-sizing: border-box;
+}
+
+.main__logist_table--input:hover,
+.main__logist_table--input:focus {
+	cursor: pointer;
+	transform: scale(1.05);
 }
 
 .main__logist_table-btn--edit,
