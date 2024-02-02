@@ -5,15 +5,9 @@ function toggleStatSection(sectionId) {
 
 document.addEventListener('DOMContentLoaded', function () {
 	var statLink = document.getElementById('statLink')
-	var logLink = document.getElementById('logLink')
 
 	statLink.addEventListener('click', function () {
 		toggleStatSection('stat')
-		handleEditButtonClick()
-	})
-
-	logLink.addEventListener('click', function () {
-		toggleStatSection('log')
 		handleEditButtonClick()
 	})
 
