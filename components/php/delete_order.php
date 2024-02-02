@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$update_flag_order = executeQuery("UPDATE Updates SET flag_order = 0 WHERE name = '$name_kross'");
 
 			if ($delete_order_query && $update_flag_order) {
-				header("Location: ./../../index.php#log");
+				header("Location: ./../../index.php");
 				// header("Refresh: 5");
 				exit();
 			} else {

@@ -31,8 +31,8 @@ include_once("./components/php/connect.php");
 			<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2" />
 			<nav>
 				<ul class="header__nav">
-					<li><a href="#stat">Статистика</a></li>
 					<li><a href="#log">Логистика</a></li>
+					<li><a href="#stat">Статистика</a></li>
 					<li><a href="#moder">Для модерации</a></li>
 				</ul>
 			</nav>
@@ -43,71 +43,6 @@ include_once("./components/php/connect.php");
 		</header>
 
 		<main class="main">
-			<section class="main__users" id="stat">
-				<div class="table-container">
-					<table class="main__users_table">
-						<thead>
-							<tr>
-								<th></th>
-								<th>ID</th>
-								<th>ChatID</th>
-								<th>Username</th>
-								<th>Дата регистрации</th>
-								<th>Адрес доставки</th>
-								<th>Email</th>
-								<th>ФИО</th>
-								<th>Бонусы</th>
-								<th>Заказы</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-							$page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-							$offset = ($page - 1) * 10;
-
-							$resultCount = executeQuery("SELECT COUNT(*) as usersCount FROM users");
-							$rowCount = $resultCount->fetch_assoc();
-							$totalUsers = $rowCount['usersCount'];
-
-							$totalPages = ceil($totalUsers / 10);
-
-							echo '</div>';
-							$result = executeQuery("SELECT * FROM users LIMIT 10 OFFSET $offset");
-
-							while ($row = $result->fetch_assoc()) {
-								echo '<tr>';
-								echo '<td>' . ' ' . '</td>';
-								echo '<td>' . $row['id'] . '</td>';
-								echo '<td>' . $row['chat_id'] . '</td>';
-								echo '<td>' . $row['username'] . '</td>';
-								echo '<td>' . $row['data_reg'] . '</td>';
-								echo '<td>' . $row['locale'] . '</td>';
-								echo '<td>' . $row['email'] . '</td>';
-								echo '<td>' . $row['FIO'] . '</td>';
-								echo '<td>' . $row['bonus_count'] . '</td>';
-								echo '<td>' . $row['orders_count'] . '</td>';
-								echo '<td>' . ' ' . '</td>';
-								echo '</tr>';
-							}
-							?>
-							<caption class="main__table--title">Статистика пользователей:
-								<?php echo $totalUsers; ?>
-							</caption>
-						</tbody>
-					</table>
-
-					<div class="pagination-container ">
-						<?php
-						for ($i = 1; $i <= $totalPages; $i++) {
-							echo '<a href="?page=' . $i . '">' . $i . '</a>';
-						}
-						?>
-					</div>
-				</div>
-			</section>
-
 			<section class="main__logist" id="log">
 				<table class="main__logist_table">
 					<caption class="main__table--title">Логистика</caption>
@@ -181,6 +116,71 @@ include_once("./components/php/connect.php");
 						echo '<a href="?page=' . $i . '">' . $i . '</a>';
 					}
 					?>
+				</div>
+			</section>
+
+			<section class="main__users" id="stat">
+				<div class="table-container">
+					<table class="main__users_table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>ID</th>
+								<th>ChatID</th>
+								<th>Username</th>
+								<th>Дата регистрации</th>
+								<th>Адрес доставки</th>
+								<th>Email</th>
+								<th>ФИО</th>
+								<th>Бонусы</th>
+								<th>Заказы</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							$page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+							$offset = ($page - 1) * 10;
+
+							$resultCount = executeQuery("SELECT COUNT(*) as usersCount FROM users");
+							$rowCount = $resultCount->fetch_assoc();
+							$totalUsers = $rowCount['usersCount'];
+
+							$totalPages = ceil($totalUsers / 10);
+
+							echo '</div>';
+							$result = executeQuery("SELECT * FROM users LIMIT 10 OFFSET $offset");
+
+							while ($row = $result->fetch_assoc()) {
+								echo '<tr>';
+								echo '<td>' . ' ' . '</td>';
+								echo '<td>' . $row['id'] . '</td>';
+								echo '<td>' . $row['chat_id'] . '</td>';
+								echo '<td>' . $row['username'] . '</td>';
+								echo '<td>' . $row['data_reg'] . '</td>';
+								echo '<td>' . $row['locale'] . '</td>';
+								echo '<td>' . $row['email'] . '</td>';
+								echo '<td>' . $row['FIO'] . '</td>';
+								echo '<td>' . $row['bonus_count'] . '</td>';
+								echo '<td>' . $row['orders_count'] . '</td>';
+								echo '<td>' . ' ' . '</td>';
+								echo '</tr>';
+							}
+							?>
+							<caption class="main__table--title">Статистика пользователей:
+								<?php echo $totalUsers; ?>
+							</caption>
+						</tbody>
+					</table>
+
+					<div class="pagination-container ">
+						<?php
+						for ($i = 1; $i <= $totalPages; $i++) {
+							echo '<a href="?page=' . $i . '">' . $i . '</a>';
+						}
+						?>
+					</div>
 				</div>
 			</section>
 

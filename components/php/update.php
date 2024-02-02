@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$result = executeQuery("UPDATE orders SET ordered='$ordered', track_value='$track_value' WHERE order_id='$order_id'");
 
 	if ($result) {
-		header("Location: ./../../index.php#log");
+		header("Location: ./../../index.php");
 		echo "success";
 	} else {
 		echo "error";
