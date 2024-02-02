@@ -76,11 +76,6 @@ table tbody td {
 	vertical-align: top;
 }
 
-table tbody tr:hover {
-	cursor: pointer;
-	transform: scale(1.02);
-}
-
 table tbody tr:nth-child(even) {
 	background: #f3f3f3;
 }
