@@ -3,7 +3,8 @@
 }
 
 .main__users,
-.main__logist {
+.main__logist,
+.main__create {
 	display: flex;
 	flex-direction: column;
 }
@@ -16,17 +17,19 @@
 
 .main__logist_table,
 .main__users_table,
+.main__create_table,
 .pagination-container {
 	margin: auto;
-	max-width: 100%;
+	width: 80%;
 	overflow-x: auto;
 	caption-side: top;
-	text-align: left;
 }
 
 .pagination-container {
+	width: 5%;
+
+	text-align: center;
 	margin-top: 5px;
-	padding: 2px 10px;
 	border: 1px solid #d8d8d8;
 	background-color: #d8d8d8;
 	border-radius: 9px;
@@ -163,6 +166,17 @@ table tbody tr td:last-child {
 
 .order__status-assembly {
 	background: #ffd621;
+}
+
+.main__create_table input,
+.main__create_table select {
+	cursor: pointer;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	outline: none;
+
+	padding: 3px 0px;
 }
 
 .main__moder {

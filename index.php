@@ -28,10 +28,12 @@ include_once("./components/php/connect.php");
 
 	if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
 	?>
+
 		<header class="header">
-			<img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2" />
+
 			<nav>
 				<ul class="header__nav">
+					<li><img src="./assets/img/stocklogo.png" width="140" height="140" alt="logo" class="header__logo me-2" /></li>
 					<li><a href="#log">Логистика</a></li>
 					<li><a href="#stat">Статистика</a></li>
 					<li><a href="#moder">Для модерации</a></li>
@@ -44,12 +46,95 @@ include_once("./components/php/connect.php");
 		</header>
 
 		<main class="main">
+			<section class="main__create">
+				<form method="post" action="./components/php/data_add.php">
+					<table class="main__create_table">
+						<caption class="main__table--title">Добавить пару в таблицу кроссовок</caption>
+						<thead>
+							<th>Название</th>
+							<th>Бренд</th>
+							<th>Материал</th>
+							<th>Цвет</th>
+							<th>Артикул</th>
+							<th>Размер</th>
+							<th>Фото</th>
+							<th>Цена</th>
+							<th>Наличие</th>
+							<th>Пол</th>
+							<th>Стиль</th>
+							<th></th>
+						</thead>
+						<tbody>
+
+
+							<tr>
+								<td>
+									<input class="main__add--input edit-field" type="text" name="title" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="brand" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="mat" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="color" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="art" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="size" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="photo" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="price" value="">
+								</td>
+
+								<td>
+									<input class="main__add--input edit-field" type="text" name="flag_order" value="0">
+								</td>
+
+								<td>
+									<select class="main__add--input edit-field" name="gender">
+										<option value="man">Man</option>
+										<option value="woman">Woman</option>
+										<option value="kids">For Kids</option>
+									</select>
+								</td>
+
+								<td>
+									<select class="main__add--input edit-field" name="style">
+										<option value="lifestyle">lifestyle</option>
+										<option value="basket">basket</option>
+										<option value="footbal">footbal</option>
+									</select>
+								</td>
+
+								<td><input class="main__add--input edit-field" type="submit" name="add" value="Добавить"></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+				</form>
+			</section>
+
 			<section class="main__logist" id="log">
 				<table class="main__logist_table">
 					<caption class="main__table--title">Логистика</caption>
 					<thead>
 						<tr>
-
 							<th>Опл/Дост</th>
 							<th>ORDER_ID</th>
 							<th>Стаус оплаты</th>
@@ -69,7 +154,7 @@ include_once("./components/php/connect.php");
 						$result = executeQuery("SELECT * FROM orders");
 
 						while ($row = $result->fetch_assoc()) {
-							echo '<form method="POST" action="./components/php/update.php" onsubmit="return confirm(\'Изменить заказ ' . $row['order_id'] . '?\nСтатус доставки: ' . $row['ordered'] . '\nТрек номер: ' . $row['track_value'] . '\');">';
+							echo '<form method="POST" action="./components/php/update.php" onsubmit="return confirm(\'Изменить заказ ' . $row['order_id'] . '?\');">';
 
 							echo '<tr class="edit-mode">';
 
@@ -89,8 +174,12 @@ include_once("./components/php/connect.php");
 							echo '<td data-field="price">' . $row['price'] . '</td>';
 
 							echo '<td>
-								<input class="main__logist_table--input edit-field" type="text" name="pole1" value="' . $row['ordered'] . '">
-								</td>';
+									<select class="main__logist_table--input edit-field" name="ordered">
+											<option value="">' . $row['ordered'] . '</option>
+											<option value="Доставка">Доставка</option>
+											<option value="Доставлено">Доставлено</option>
+									</select>
+							</td>';
 
 							echo '<td>	<input class="main__logist_table--input edit-field" type="text" name="pole2" value="' . $row['track_value'] . '">
 							</td>';
@@ -126,7 +215,6 @@ include_once("./components/php/connect.php");
 					<table class="main__users_table">
 						<thead>
 							<tr>
-								<th></th>
 								<th>ID</th>
 								<th>ChatID</th>
 								<th>Username</th>
@@ -136,7 +224,6 @@ include_once("./components/php/connect.php");
 								<th>ФИО</th>
 								<th>Бонусы</th>
 								<th>Заказы</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -156,7 +243,7 @@ include_once("./components/php/connect.php");
 
 							while ($row = $result->fetch_assoc()) {
 								echo '<tr>';
-								echo '<td>' . ' ' . '</td>';
+
 								echo '<td>' . $row['id'] . '</td>';
 								echo '<td>' . $row['chat_id'] . '</td>';
 								echo '<td>' . $row['username'] . '</td>';
@@ -166,7 +253,7 @@ include_once("./components/php/connect.php");
 								echo '<td>' . $row['FIO'] . '</td>';
 								echo '<td>' . $row['bonus_count'] . '</td>';
 								echo '<td>' . $row['orders_count'] . '</td>';
-								echo '<td>' . ' ' . '</td>';
+
 								echo '</tr>';
 							}
 							?>
@@ -185,6 +272,8 @@ include_once("./components/php/connect.php");
 					</div>
 				</div>
 			</section>
+
+
 
 			<section class="main__moder" id="moder">
 				<h2 class='text-center mb-3'>Все для модерации</h2>

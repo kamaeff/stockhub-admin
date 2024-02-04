@@ -1,10 +1,13 @@
 .header {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 
 	font-family: 'Nunito', sans-serif;
 	font-size: 18px;
 	font-weight: 700;
+
+	background-color: #fff;
 }
 
 .header__logo {
@@ -19,23 +22,22 @@
 }
 
 .header__nav li {
+	margin-left: auto;
 	margin-right: 20px;
-	transition: color 0.3s;
 }
 
 .header__nav a {
 	color: #000;
 }
 
-.header__nav li:hover {
+.header__nav li a:hover {
 	border-bottom: 1px solid #000;
-	transform: scale(1.05);
 }
 
 .header__nav--logout {
 	display: flex;
 	align-items: center;
-	margin-left: auto;
+
 	margin-right: 60px;
 
 	gap: 10px;
